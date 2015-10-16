@@ -14,7 +14,7 @@ foreach ($module in $modules)
     if($names -contains $name)
     {
         "Duplicate entry $name found!"
-        $list = Get-Module -ListAvailable | Where { $_.Name -eq $name }
+        $list = Get-Module -ListAvailable | Where-Object { $_.Name -eq $name }
         if ($list.length -ge 2)
         {
             ($ver1, $path1) = ([version]$list[0].Version, $list[0].ModuleBase)
@@ -24,12 +24,12 @@ foreach ($module in $modules)
             if($result)
             {
                 "Removing: $path1 with version $ver1"
-                Remove-Item $path1 -Recurse -Force
+                Remove-Item -Path $path1 -Recurse -Force
             }
             else
             {
                 "Removing: $path2 with version $ver2"
-                Remove-Item $path2 -Recurse -Force
+                Remove-Item -Path $path2 -Recurse -Force
             }
         }
     }
