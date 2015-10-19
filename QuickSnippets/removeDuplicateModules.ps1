@@ -14,7 +14,7 @@ foreach ($module in $modules)
     if($names -contains $name)
     {
         "Duplicate entry $name found!"
-        $list = Get-Module -ListAvailable | Where-Object { $_.Name -eq $name }
+        $list = $modules | Where-Object { $_.Name -eq $name }
         if ($list.length -ge 2)
         {
             ($ver1, $path1) = ([version]$list[0].Version, $list[0].ModuleBase)
